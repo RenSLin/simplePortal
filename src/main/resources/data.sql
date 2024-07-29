@@ -1,0 +1,1 @@
+insert into employee(id,name,password) values(2400681, 'Ren Lin','Foo123!');

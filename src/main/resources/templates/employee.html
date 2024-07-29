@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee login page</title>
+    <link href="/style/myStyle.css" th:href="@{/style/myStyle.css}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <h1 th:text="'Welcome back, ' + ${employee.name} + '!'"></h1>
+    <table>
+        <tr>
+            <td>UID:</td>
+            <td th:text="${employee.id}"></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td th:text="${employee.password}"></td>
+        </tr>
+    </table>
+    <a th:href="@{/}">Logout</a>
+</body>
+</html>

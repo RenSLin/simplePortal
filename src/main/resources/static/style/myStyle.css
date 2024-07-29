@@ -1,0 +1,33 @@
+@charset "UTF-8";
+body {
+    background-color: #36393F; /* Discord dark background */
+    color: #FFFFFF; /* Discord text color */
+	text-align: center;
+	margin: auto;
+	font-family: 'Helvetica';
+}
+
+a {
+    color: #FFFFFF; /* White link color */
+    text-decoration: none;
+}
+a:hover {
+    color: #FFFF00; /* Yellow link hover color */
+    text-decoration: underline;
+}
+
+table,tbody,tr, td {
+	margin: auto;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
