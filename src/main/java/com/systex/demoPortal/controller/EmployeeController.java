@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Optional;
+
 @Controller
 public class EmployeeController{
 
@@ -23,8 +25,17 @@ public class EmployeeController{
 
     @PostMapping("/login")
     public String getEmployee(@ModelAttribute Employee employee, Model model){
-        employeeRepository.save(employee);
-        model.addAttribute("employee",employee);
+
+        Optional<Employee> existingEmployee = employeeRepository.findById(employee.getId());
+        if (existingEmployee.isEmpty()) {
+            model.addAttribute("error", "Invalid ID");
+            return "portal";
+        }
+        if(!existingEmployee.get().getPassword().equals(employee.getPassword())){
+            model.addAttribute("error", "Incorrect Password");
+            return "portal";
+        }
+        model.addAttribute("employee",existingEmployee.get());
         return "employee";
     }
 

@@ -8,16 +8,14 @@
 
 <body>
     <h1>Employee Login Portal</h1>
+    <p th:if="${error != null}" th:text="${error}" style="color:red;"></p>
     <form action="#" th:action="@{/login}" th:object="${employee}" method="POST">
         <table>
             <tr>
                 <td>Employee UID:</td>
                 <td><input type="number" th:field="*{id}" required/></td>
             </tr>
-            <tr>
-                <td>Employee Name:</td>
-                <td><input type="text" th:field="*{name}" required></td>
-            </tr>
+
             <tr>
                 <td>Employee Password:</td>
                 <td><input type="password" th:field="*{password}" required></td>
