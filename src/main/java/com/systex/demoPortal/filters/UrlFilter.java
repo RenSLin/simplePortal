@@ -17,7 +17,7 @@ public class UrlFilter extends OncePerRequestFilter {
         String ref = request.getHeader("Referer");
         if(ref == null || !ref.endsWith("/login")){
             System.out.println("FilterInvoked");
-            response.sendRedirect("portal");
+            response.sendRedirect("/");
             return;
         }
         filterChain.doFilter(request,response);
