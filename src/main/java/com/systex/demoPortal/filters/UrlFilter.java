@@ -10,13 +10,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+
 public class UrlFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        String formStatus = request.getParameter("formSubmission");
-        if (formStatus == null || !formStatus.equals("true")) {
+        if (request.getSession().getAttribute("authorizedEmp") == null) {
             System.out.println("inside filter Internal if statement");
             response.sendRedirect("/");
         }
