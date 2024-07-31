@@ -14,12 +14,13 @@ public class UrlFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String ref = request.getHeader("Referer");
-        if(ref == null || !ref.endsWith("/login")){
-            System.out.println("FilterInvoked");
+
+        String formStatus = request.getParameter("formSubmission");
+        if (formStatus == null || !formStatus.equals("true")) {
+            System.out.println("inside filter Internal if statement");
             response.sendRedirect("/");
-            return;
         }
+        System.out.println("inside filter internal about to do filter");
         filterChain.doFilter(request,response);
     }
 }

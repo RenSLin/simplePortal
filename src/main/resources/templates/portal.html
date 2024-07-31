@@ -10,6 +10,7 @@
     <h1>Employee Login Portal</h1>
     <p th:if="${error != null}" th:text="${error}" style="color:red;"></p>
     <form action="#" th:action="@{/login}" th:object="${employee}" method="POST">
+        <input type="hidden" name="formSubmission" value="true">
         <table>
             <tr>
                 <td>Employee UID:</td>
