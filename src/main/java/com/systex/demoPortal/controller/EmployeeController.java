@@ -20,8 +20,8 @@ public class EmployeeController{
     private EmployeeService employeeService;
 
     @RequestMapping("/")
-    public String portal(Model model){
-
+    public String portal(Model model, HttpSession session){
+        model.addAttribute("error",session.getAttribute("error"));
         model.addAttribute("employee", new Employee());
         return "portal";
     }
@@ -29,20 +29,15 @@ public class EmployeeController{
     @PostMapping("/login")
     public String getEmployee(@ModelAttribute Employee employee, Model model, HttpSession session){
 
-        try {
-            Employee emp = employeeService.getEmployeeById(employee.getId());
-            if(!emp.getPassword().equals(employee.getPassword())){
-                model.addAttribute("error", "Incorrect Password");
-                return "portal";
-            }
-
-            session.setAttribute("authorizedEmp", emp);
-            model.addAttribute("employee",emp);
-            return "employee";
-        } catch(RuntimeException e){
-            model.addAttribute("error", "Invalid ID");
+        System.out.println("Inside getEmployee Controller");
+        Employee emp = (Employee) session.getAttribute("authorizedEmp");
+        if (emp == null) {
             return "portal";
         }
+        System.out.println(emp);
+        model.addAttribute("employee",emp);
+        return "/employee";
+
     }
 
     @GetMapping("/logout")

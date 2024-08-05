@@ -1,6 +1,6 @@
 package com.systex.demoPortal.config;
 
-import com.systex.demoPortal.filters.UrlFilter;
+import com.systex.demoPortal.filters.LoginFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 public class FilterConfig {
 
     @Bean
-    public FilterRegistrationBean<UrlFilter> urlFilter(){
-        FilterRegistrationBean<UrlFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new UrlFilter());
-        registrationBean.addUrlPatterns("/employee");
+    public FilterRegistrationBean<LoginFilter> urlFilter(final LoginFilter loginFilter){
+        FilterRegistrationBean<LoginFilter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(loginFilter);
+        registrationBean.addUrlPatterns("/login", "/employee");
         return registrationBean;
     }
 }

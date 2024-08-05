@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EmployeeService implements DemoService{
+public class EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @Override
+
     public List<Employee> getAllEmployee() {
         return employeeRepository.findAll();
     }
 
-    @Override
+
     public Employee getEmployeeById(Integer id) {
         Optional<Employee> emp = employeeRepository.findById(id);
         Employee employee = null;
