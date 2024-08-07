@@ -3,15 +3,17 @@ package com.systex.demoPortal.controller;
 import com.systex.demoPortal.model.Employee;
 import com.systex.demoPortal.model.EmployeeRepository;
 import com.systex.demoPortal.service.EmployeeService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class EmployeeController{
@@ -23,26 +25,56 @@ public class EmployeeController{
     public String portal(Model model, HttpSession session){
         model.addAttribute("error",session.getAttribute("error"));
         model.addAttribute("employee", new Employee());
+        session.invalidate();
         return "portal";
     }
 
     @PostMapping("/login")
     public String getEmployee(@ModelAttribute Employee employee, Model model, HttpSession session){
-
-        System.out.println("Inside getEmployee Controller");
         Employee emp = (Employee) session.getAttribute("authorizedEmp");
         if (emp == null) {
+            session.invalidate();
             return "portal";
         }
-        System.out.println(emp);
         model.addAttribute("employee",emp);
-        return "/employee";
-
+        return "employee";
     }
+
+
+    @PostMapping("/ajaxlogin")
+    @ResponseBody
+    public String ajaxGetEmployee(HttpSession session) {
+        System.out.println("Inside AjaxGetEmployee Controller");
+        Integer empID = (Integer) session.getAttribute("userID");
+        Employee emp = employeeService.getEmployeeById(empID);
+        session.setAttribute("authorizedEmp", emp);
+        System.out.println("employee " + emp);
+        return "success";
+    }
+
 
     @GetMapping("/logout")
     public String logOut(Model model, HttpSession session){
         session.invalidate();
         return "redirect:/";
     }
+
+    @RequestMapping("/ajax-portal")
+    public String ajaxPortal(Model model, HttpSession session) {
+        model.addAttribute("error", session.getAttribute("error"));
+        model.addAttribute("employee", new Employee());
+        return "otherportal"; // the new AJAX login page
+    }
+
+    @GetMapping("/employee")
+    public String employeePage(Model model, HttpSession session) {
+        Employee emp = (Employee) session.getAttribute("authorizedEmp");
+        System.out.println("getting the authorzied Emp: " + emp);
+        if (emp == null) {
+            return "redirect:/";
+        }
+        model.addAttribute("employee", emp);
+        return "employee";
+    }
+
 }

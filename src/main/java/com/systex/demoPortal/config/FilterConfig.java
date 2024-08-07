@@ -8,11 +8,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FilterConfig {
 
+
     @Bean
     public FilterRegistrationBean<LoginFilter> urlFilter(final LoginFilter loginFilter){
         FilterRegistrationBean<LoginFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(loginFilter);
-        registrationBean.addUrlPatterns("/login", "/employee");
+        registrationBean.addUrlPatterns("/login","/ajaxlogin");
         return registrationBean;
     }
 }

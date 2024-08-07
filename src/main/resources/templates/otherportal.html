@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Employee index</title>
+    <link href="/style/myStyle.css" th:href="@{/style/myStyle.css}" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script th:src="@{formAjax.js}"></script>
+</head>
+<body>
+<h1>Ajax Employee Login Portal</h1>
+<p th:if="${error != null}" th:text="${error}" style="color:red;"></p>
+<p id="error-message" style="color:red;"></p>
+<form id="loginForm" action="#" th:action="@{/login}" th:object="${employee}" method="POST">
+    <table>
+        <tr>
+            <td>Employee UID:</td>
+            <td><input id="eid" type="number" th:field="*{id}" required/></td>
+        </tr>
+
+        <tr>
+            <td>Employee Password:</td>
+            <td><input id="ePassword" type="password" th:field="*{password}" required></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="login"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<a th:href="@{/}">To Original Portal</a>
+</body>
+</html>
