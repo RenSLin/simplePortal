@@ -1,0 +1,30 @@
+@charset "UTF-8";
+body {
+    background-color: #2D283E;
+    color: #D1D7E0;
+}
+
+.form-control{
+    background-color: #4C495D;
+}
+.form-control:focus{
+    background-color: #4C495D;
+}
+
+.form-floating > input + label:after {
+    background: transparent !important;
+}
+
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
