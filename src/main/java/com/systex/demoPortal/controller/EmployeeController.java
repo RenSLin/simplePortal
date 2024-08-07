@@ -31,6 +31,7 @@ public class EmployeeController{
 
     @PostMapping("/login")
     public String getEmployee(@ModelAttribute Employee employee, Model model, HttpSession session){
+        System.out.println("Inside  Controller");
         Employee emp = (Employee) session.getAttribute("authorizedEmp");
         if (emp == null) {
             session.invalidate();
@@ -45,9 +46,7 @@ public class EmployeeController{
     @ResponseBody
     public String ajaxGetEmployee(HttpSession session) {
         System.out.println("Inside AjaxGetEmployee Controller");
-        Integer empID = (Integer) session.getAttribute("userID");
-        Employee emp = employeeService.getEmployeeById(empID);
-        session.setAttribute("authorizedEmp", emp);
+        Employee emp = (Employee) session.getAttribute("authorizedEmp");
         System.out.println("employee " + emp);
         return "success";
     }
@@ -63,6 +62,7 @@ public class EmployeeController{
     public String ajaxPortal(Model model, HttpSession session) {
         model.addAttribute("error", session.getAttribute("error"));
         model.addAttribute("employee", new Employee());
+        session.invalidate();
         return "otherportal"; // the new AJAX login page
     }
 

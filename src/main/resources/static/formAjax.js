@@ -20,7 +20,7 @@ $(document).ready(function() {
                     if (response === "success") {
                         window.location.href = "/employee";
                     } else {
-                        $('#error-message').text('Login failed.');
+                        $('#error-message').text('Invalid password or ID.');
                     }
                 },
                 error: function(xhr) {

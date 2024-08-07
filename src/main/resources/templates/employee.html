@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Employee login page</title>
     <link href="/style/myStyle.css" th:href="@{/style/myStyle.css}" rel="stylesheet" type="text/css" />
 </head>
@@ -17,6 +18,6 @@
             <td th:text="${employee.password}"></td>
         </tr>
     </table>
-    <a th:href="@{/logout}">Logout</a>
+    <a th:href="@{/logout}">Back to Portal</a>
 </body>
 </html>
