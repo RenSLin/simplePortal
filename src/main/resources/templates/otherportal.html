@@ -12,26 +12,27 @@
     <link href="/style/ajaxStyling.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div class="container min-vh-100 d-flex text-center justify-content-center align-items-center">
+    <div class="container min-vh-100 d-flex flex-wrap text-center justify-content-center align-items-center">
+        <div class="me-5"><img src="/img/giga-chad.gif" alt="gigachad" style="width:150px; height:150px;"></div>
         <div class="border border-white p-4">
             <div class="row">
                 <div class="col">
                     <h1>Ajax Employee Login Portal</h1>
-                    <div id="error-message" style="color:red;"></div>
+                    <div id="error-message"></div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                 <form id="loginForm" action="#" method="POST">
                     <div class="form-floating mb-3">
-                        <input type="number" class="form-control" id="eid" placeholder="exampleID" required>
+                        <input type="number" class="form-control text-white" id="eid" placeholder="exampleID" required>
                         <label for="eid">Employee UID:</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="ePassword" placeholder="secretPassword" required>
+                        <input type="password" class="form-control text-white" id="ePassword" placeholder="secretPassword" required>
                         <label for="ePassword">Enter password:</label>
                     </div>
-                    <input type="submit" class="btn btn-primary" value="login"/>
+                    <input type="submit" class="btn custom-btn" value="login"/>
                 </form>
                 </div>
             </div>
@@ -41,6 +42,7 @@
                 </div>
             </div>
         </div>
+        <div class="ms-5"><img src="/img/giga-chad.gif" alt="gigachad" style="width:150px; height:150px;"></div>
     </div>
 </body>
 </html>

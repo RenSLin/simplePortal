@@ -24,7 +24,7 @@ public class LoginFilter extends OncePerRequestFilter {
     @Autowired
     private EmployeeService employeeService;
 
-    private final Set<String> EXCLUDED_URL = new HashSet<>(Set.of("/","/ajax-portal","/logout", "/style","/js"));
+    private final Set<String> EXCLUDED_URL = new HashSet<>(Set.of("/","/ajax-portal","/logout", "/style","/js","/img","/ajaxlogout"));
 
     protected boolean isExcluded(String url) {
         return EXCLUDED_URL.contains(url);

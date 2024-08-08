@@ -4,6 +4,15 @@ body {
     color: #D1D7E0;
 }
 
+.custom-btn{
+    background-color: #802BB1;
+    color: #D1D7E0;
+}
+
+.border{
+    background-color: #564F6F;
+}
+
 .form-control{
     background-color: #4C495D;
 }
@@ -14,8 +23,6 @@ body {
 .form-floating > input + label:after {
     background: transparent !important;
 }
-
-
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

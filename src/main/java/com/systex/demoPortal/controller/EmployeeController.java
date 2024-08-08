@@ -45,6 +45,7 @@ public class EmployeeController{
     @PostMapping("/ajaxlogin")
     @ResponseBody
     public String ajaxGetEmployee(HttpSession session) {
+        System.out.println("Inside AjaxGetEmployee Controller");
         Employee emp = (Employee) session.getAttribute("authorizedEmp");
         return "success";
     }

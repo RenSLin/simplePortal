@@ -21,7 +21,7 @@ $(document).ready(function() {
                     if (response === "success") {
                         window.location.href = "/employee";
                     } else {
-                        $('#error-message').html('<div class="alert alert-danger">' + response.error + '</div>');
+                        $('#error-message').html('<div class="alert alert-danger d-inline-flex">' + response.error + '</div>');
                     }
                 },
                 error: function(xhr) {
