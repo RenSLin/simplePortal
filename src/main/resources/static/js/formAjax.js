@@ -17,15 +17,16 @@ $(document).ready(function() {
             data: JSON.stringify({ id: id, password: password }),
                 success: function(response) {
                     console.log(response)
+                    console.log(response.error)
                     if (response === "success") {
                         window.location.href = "/employee";
                     } else {
-                        $('#error-message').text('Invalid password or ID.');
+                        $('#error-message').html('<div class="alert alert-danger">' + response.error + '</div>');
                     }
                 },
                 error: function(xhr) {
                     console.log(xhr)
-                    let errorMsg = 'An error occurred during login';
+                    let errorMsg = 'ID digit entered over integer limit';
                     $('#error-message').text(errorMsg);
                 }
         });
