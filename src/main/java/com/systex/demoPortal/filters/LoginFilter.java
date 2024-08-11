@@ -24,10 +24,11 @@ public class LoginFilter extends OncePerRequestFilter {
     @Autowired
     private EmployeeService employeeService;
 
-    private final Set<String> EXCLUDED_URL = new HashSet<>(Set.of("/","/ajax-portal","/logout", "/style","/js","/img","/ajaxlogout"));
+    private final Set<String> EXCLUDED_URL = new HashSet<>(Set.of("/","/ajax-portal","/logout"));
+
 
     protected boolean isExcluded(String url) {
-        return EXCLUDED_URL.contains(url);
+        return EXCLUDED_URL.contains(url) || url.startsWith("/js/") || url.startsWith("/style/") || url.startsWith("/img/");
     }
 
     @Override
@@ -40,12 +41,20 @@ public class LoginFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+
         if ("/ajaxlogin".equals(url)){
             doAjax(request, response, filterChain);
         } else if ("/login".equals(url)) {
             doForm(request,response, filterChain);
+        } else if ("/employee".equals(url)) {
+            if (request.getSession().getAttribute("authorizedEmp") == null) {
+                logger.info("how did I get here");
+                response.sendRedirect("/");
+                return;
+            }
+            filterChain.doFilter(request,response);
         } else {
-            filterChain.doFilter(request, response);
+            response.sendRedirect("/");
         }
     }
 
