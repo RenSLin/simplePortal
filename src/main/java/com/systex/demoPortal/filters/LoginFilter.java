@@ -48,7 +48,6 @@ public class LoginFilter extends OncePerRequestFilter {
             doForm(request,response, filterChain);
         } else if ("/employee".equals(url)) {
             if (request.getSession().getAttribute("authorizedEmp") == null) {
-                logger.info("how did I get here");
                 response.sendRedirect("/");
                 return;
             }

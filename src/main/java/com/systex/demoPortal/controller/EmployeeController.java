@@ -33,10 +33,6 @@ public class EmployeeController{
     public String getEmployee(@ModelAttribute Employee employee, Model model, HttpSession session){
         System.out.println("Inside  Controller");
         Employee emp = (Employee) session.getAttribute("authorizedEmp");
-        if (emp == null) {
-            session.invalidate();
-            return "portal";
-        }
         model.addAttribute("employee",emp);
         return "employee";
     }
@@ -68,10 +64,6 @@ public class EmployeeController{
     @GetMapping("/employee")
     public String employeePage(Model model, HttpSession session) {
         Employee emp = (Employee) session.getAttribute("authorizedEmp");
-        System.out.println("getting the authorzied Emp: " + emp);
-        if (emp == null) {
-            return "redirect:/";
-        }
         model.addAttribute("employee", emp);
         return "employee";
     }
